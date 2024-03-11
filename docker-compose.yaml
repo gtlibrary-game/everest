@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile-backend
+    volumes:
+      - ./:/app  # Mount the backend directory to the container for live-reloading
+      - static_volume:/app/static  # Dedicated volume for Django static files
+      - media_volume:/app/media    # Dedicated volume for Django media files
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1  # Assuming you have a DEBUG environment variable in your Django settings
+    command: python manage.py runserver 0.0.0.0:8000
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../Dockerfile-frontend
+    volumes:
+      - ./frontend:/app  # Mount the frontend directory to the container for live-reloading
+      - /app/node_modules  # Keep node_modules on an anonymous volume
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    command: npm start
+
+volumes:
+  static_volume:
+  media_volume:
