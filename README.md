@@ -14,13 +14,16 @@ Follow these steps to get your development environment set up:
 
 1. **Clone the Repository**
 
+Assumes powershell:
+
    ```sh
    git clone https://github.com/gtlibrary-game/everest.git
    cd everest
+   $env:HT_TOKEN="get token at https://huggingface.co/ login and make access token"
    docker-compose up --build
    ```
 
-2. **Chat w/ the AI**
+3. **Chat w/ the AI**
 
 https://chat.openai.com/g/g-51CwGknTd-great-library-project-everest
 
