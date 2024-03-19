@@ -1,3 +1,6 @@
 [submodule "chipmunk"]
 	path = chipmunk
 	url = https://github.com/gtlibrary-game/chipmunk
+[submodule "autotrain-advanced"]
+	path = autotrain-advanced
+	url = https://github.com/gtlibrary-game/autotrain-advanced
