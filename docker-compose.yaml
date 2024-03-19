@@ -28,6 +28,19 @@ services:
       - NODE_ENV=development
     command: npm start
 
+  autotrain:
+    build:
+      context: ./autotrain-advanced
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./autotrain-advanced:/app/code  # Mount the frontend directory to the container for live-reloading
+    ports:
+      - "8080:8080"
+    environment:
+      - HF_TOKEN=${HF_TOKEN}
+    command: conda run -p /app/env autotrain app --port 8080 --host 0.0.0.0
+
+
 volumes:
   static_volume:
   media_volume:
