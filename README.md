@@ -23,6 +23,9 @@ Assumes powershell:
    $env:HT_TOKEN="get token at https://huggingface.co/ login and make access token"
    docker-compose up --build
    ```
+Browse to:
+   - For frontend: http://localhost:3000/
+   - For Local LLM (autotrain): http://localhost:8080/
 
 3. **Chat w/ the OpenAI ChatGPT Plus App**
 
