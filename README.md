@@ -23,7 +23,7 @@ Assumes powershell:
    $env:HT_TOKEN="get token at https://huggingface.co/ login and make access token"
    docker-compose up --build
    ```
-Browse to:
+2. Browse to:
    - For frontend: http://localhost:3000/
    - For Local LLM (autotrain): http://localhost:8080/
 
@@ -31,10 +31,10 @@ Browse to:
 
 https://chat.openai.com/g/g-51CwGknTd-great-library-project-everest
 
-3. **Documentation**
+4. **Documentation**
 
 https://docs.google.com/document/d/1IWcJX2il2HQtIB6CuDpL77A6QL4b3N8tDumbnyvKpwo/edit?usp=sharing
 
-4. **Community**
+5. **Community**
 
 https://discord.gg/gBCey4pKJ2
