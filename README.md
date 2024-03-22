@@ -23,7 +23,7 @@ Assumes powershell:
    $env:HT_TOKEN="get token at https://huggingface.co/ login and make access token"
    docker-compose up --build
    ```
-2. Browse to:
+2. **Browse to:**
    - For frontend: http://localhost:3000/
    - For Local LLM (autotrain): http://localhost:8080/
 
