@@ -31,14 +31,24 @@ services:
   autotrain:
     build:
       context: ./autotrain-advanced
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     volumes:
       - ./autotrain-advanced:/app/code  # Mount the frontend directory to the container for live-reloading
+      - ./autotrain-advanced/temp:/tmp
     ports:
       - "8080:8080"
+    user: "root"
     environment:
       - HF_TOKEN=${HF_TOKEN}
-    command: conda run -p /app/env autotrain app --port 8080 --host 0.0.0.0
+    #command: conda run --no-capture-output -p /app/env /app/env/bin/autotrain app --port 8080 --host 0.0.0.0
+    command: bash -c "conda run --no-capture-output -p /app/env /app/env/bin/pip install -e . && ls /app/code && conda run --no-capture-output -p /app/env /app/env/bin/pip list && ls -alrt /app/code && conda run --no-capture-output -p /app/env /app/env/bin/autotrain app --port 8080 --host 0.0.0.0"
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
 
 
 volumes:
