@@ -24,8 +24,9 @@ Assumes powershell:
    docker-compose up --build
    ```
 2. **Browse to:**
-   - For frontend: http://localhost:3000/
-   - For Local LLM (autotrain): http://localhost:8080/
+   - For React Frontend: http://localhost:3000/
+   - For Django Backend: http://localhost:8000/admin/
+   - For HuggingFace AutoTrain: http://localhost:8080/
 
 3. **Chat w/ the OpenAI ChatGPT Plus App**
 
