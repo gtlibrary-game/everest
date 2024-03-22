@@ -7,6 +7,7 @@ Welcome to the **Everest Project**! Everest is a cutting-edge web application de
 - **Docker Integration**: Simplify your development and deployment workflow with containerization.
 - **Django Backend**: Leverage the power of Django for your server-side logic with a pre-configured project structure.
 - **React Frontend**: Jumpstart your user interface with a React-based frontend, set up and ready to be customized.
+- **Huggingface Autotrain Advanced**: Integrate your own local huggingface models finetuned with your training data.
 
 ## Getting Started
 
@@ -23,7 +24,7 @@ Assumes powershell:
    docker-compose up --build
    ```
 
-3. **Chat w/ the AI**
+3. **Chat w/ the OpenAI ChatGPT Plus App**
 
 https://chat.openai.com/g/g-51CwGknTd-great-library-project-everest
 
