@@ -69,7 +69,27 @@ services:
           devices:
             - driver: nvidia
               capabilities: [gpu]
-
+              
+  autoreply:
+    build:
+      context: ./autotrain-advanced
+      dockerfile: Dockerfile
+    volumes:
+      - ./autotrain-advanced/autoreply:/app/code  # Mount the frontend directory to the container for live-reloading
+      - ./autotrain-advanced/temp:/tmp
+    ports:
+      - "8001:8001"
+    user: "root"
+    environment:
+      - HF_TOKEN=${HF_TOKEN}
+    #command: conda run --no-capture-output -p /app/env /app/env/bin/autotrain app --port 8080 --host 0.0.0.0
+    command: conda run --no-capture-output -p /app/env /app/env/bin/uvicorn app:app --host 0.0.0.0 --port 8001 --reload
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
 
 volumes:
   static_volume:
