@@ -6,14 +6,14 @@ services:
       context: .
       dockerfile: Dockerfile-backend
     volumes:
-      - ./:/app  # Mount the backend directory to the container for live-reloading
-      - static_volume:/app/static  # Dedicated volume for Django static files
-      - media_volume:/app/media    # Dedicated volume for Django media files
+      - ./:/app/code  # Mount the backend directory to the container for live-reloading
+      - static_volume:/app/code/static  # Dedicated volume for Django static files
+      - media_volume:/app/code/media    # Dedicated volume for Django media files
     ports:
       - "8000:8000"
     environment:
       - DEBUG=1  # Assuming you have a DEBUG environment variable in your Django settings
-    command: python manage.py runserver 0.0.0.0:8000
+    command: conda run --no-capture-output -p /app/env /app/env/bin/python manage.py runserver 0.0.0.0:8000
 
   frontend:
     build:
@@ -41,8 +41,28 @@ services:
     environment:
       - HF_TOKEN=${HF_TOKEN}
     #command: conda run --no-capture-output -p /app/env /app/env/bin/autotrain app --port 8080 --host 0.0.0.0
-    command: bash -c "conda run --no-capture-output -p /app/env /app/env/bin/pip install -e . && ls /app/code && conda run --no-capture-output -p /app/env /app/env/bin/pip list && ls -alrt /app/code && conda run --no-capture-output -p /app/env /app/env/bin/autotrain app --port 8080 --host 0.0.0.0"
+    command: bash -c "conda run --no-capture-output -p /app/env /app/env/bin/pip install -e . && conda run --no-capture-output -p /app/env /app/env/bin/autotrain app --port 8080 --host 0.0.0.0"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
 
+  autoreply:
+    build:
+      context: ./autotrain-advanced
+      dockerfile: Dockerfile
+    volumes:
+      - ./autotrain-advanced/autoreply:/app/code  # Mount the frontend directory to the container for live-reloading
+      - ./autotrain-advanced/temp:/tmp
+    ports:
+      - "8001:8001"
+    user: "root"
+    environment:
+      - HF_TOKEN=${HF_TOKEN}
+    #command: conda run --no-capture-output -p /app/env /app/env/bin/autotrain app --port 8080 --host 0.0.0.0
+    command: conda run --no-capture-output -p /app/env /app/env/bin/uvicorn app:app --host 0.0.0.0 --port 8001 --reload
     deploy:
       resources:
         reservations:
