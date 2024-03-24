@@ -13,6 +13,10 @@ docker-compose.*.yml
 __pycache__/
 *.py[cod]
 *$py.class
+.cache
+.bash_history
+.python_history
+.lesshst
 
 # C extensions
 *.so

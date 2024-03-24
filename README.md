@@ -23,15 +23,19 @@ Assumes powershell:
    $env:HT_TOKEN="get token at https://huggingface.co/ login and make access token"
    docker-compose up --build
    ```
+2. **Browse to:**
+   - For React Frontend: http://localhost:3000/
+   - For Django Backend: http://localhost:8000/admin/
+   - For HuggingFace AutoTrain: http://localhost:8080/
 
 3. **Chat w/ the OpenAI ChatGPT Plus App**
 
 https://chat.openai.com/g/g-51CwGknTd-great-library-project-everest
 
-3. **Documentation**
+4. **Documentation**
 
 https://docs.google.com/document/d/1IWcJX2il2HQtIB6CuDpL77A6QL4b3N8tDumbnyvKpwo/edit?usp=sharing
 
-4. **Community**
+5. **Community**
 
 https://discord.gg/gBCey4pKJ2
